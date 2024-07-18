@@ -1,0 +1,17 @@
+[package]
+name = "lootie"
+authors = ["Roms1383", "DerekM07"]
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.79.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = "thin"
+strip = true
+codegen-units = 1
+
+[dependencies]
+red4ext-rs = { git = "https://github.com/Roms1383/red4ext-rs", rev = "ea4dee6" }

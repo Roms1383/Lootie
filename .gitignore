@@ -1,0 +1,6 @@
+/target
+/Cargo.lock
+/.vscode
+/community
+.env
+checksum.txt
