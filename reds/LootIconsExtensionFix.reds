@@ -1,8 +1,7 @@
-module Lootie
+module LootIconsExtensionFix
 
 public static func HasLootableItems(self: wref<ScriptedPuppet>) -> Bool {
     if !IsDefined(self) { return false; }
     
-    return GameInstance.GetTransactionSystem(self.GetGame())
-    .GetNumItems(self) > 0;
+    return GameInstance.GetTransactionSystem(self.GetGame()).GetNumItems(self) > 0;
 }

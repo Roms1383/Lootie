@@ -1,14 +1,16 @@
 //! Hook for [HasLootableItems](https://nativedb.red4ext.com/gamePuppet#HasLootableItems).
 
 use red4ext_rs::{
-    hashes, hooks, log,
+    addr_hashes, hooks, log,
     types::{CName, IScriptable, StackFrame, WeakRef},
     PluginOps, RttiSystem, SdkEnv, VoidPtr,
 };
 
-use crate::{bindings::ScriptedPuppet, Lootie};
+use crate::{bindings::ScriptedPuppet, LootIconsExtensionFix};
 
-/// Corresponding hash on `2.12a`: `0x141117628`
+/// Corresponding hash on:
+/// - `2.12a`: `0x141117628`
+/// - `2.13`:  `0x1411C26D8`
 const OFFSET: u32 = 0x362B23C7;
 
 hooks! {
@@ -16,7 +18,7 @@ hooks! {
 }
 
 pub(super) fn attach_hook(env: &SdkEnv) {
-    let addr = hashes::resolve(OFFSET);
+    let addr = addr_hashes::resolve(OFFSET);
     let addr = unsafe {
         std::mem::transmute::<
             usize,
@@ -38,14 +40,16 @@ unsafe extern "C" fn detour(
     let frame = &mut *f;
     let state = frame.args_state();
 
-    let env = Lootie::env();
+    let env = LootIconsExtensionFix::env();
+
+    #[cfg(debug_assertions)]
     log::info!(env, "intercepted HasLootableItems!");
 
     // read stack frame arg
     let puppet: WeakRef<ScriptedPuppet> = StackFrame::get_arg(frame);
 
     // retrieve Redscript method
-    let func_name = "Lootie.HasLootableItems";
+    let func_name = "LootIconsExtensionFix.HasLootableItems";
     let rtti = RttiSystem::get();
     let funcs = rtti.get_global_functions();
     let func = funcs
@@ -59,7 +63,11 @@ unsafe extern "C" fn detour(
             let out = a3 as *mut bool;
             *out = has;
 
-            log::info!(env, "wrote Lootie.HasLootableItems()'s output successfully: {has}");
+            #[cfg(debug_assertions)]
+            log::info!(
+                env,
+                "wrote LootIconsExtensionFix.HasLootableItems()'s output successfully: {has}"
+            );
         }
         // if detouring fails, fallback to vanilla method
         Err(e) => {

@@ -1,8 +1,9 @@
 //! Types generated from [red4ext-rs-bindings](https://github.com/jac3km4/red4ext-rs-bindings).
 
 use red4ext_rs::{
-    types::{CName, IScriptable, ItemId, RedArray, Ref, ScriptClass, Scripted, WeakRef},
-    NativeRepr,
+    class_kind::Scripted,
+    types::{CName, IScriptable, ItemId, RedArray, Ref, WeakRef},
+    NativeRepr, ScriptClass,
 };
 
 #[repr(C)]
@@ -76,7 +77,7 @@ pub struct ScriptedPuppet {
 }
 
 unsafe impl ScriptClass for ScriptedPuppet {
-    const CLASS_NAME: &'static str = "ScriptedPuppet";
+    const NAME: &'static str = "ScriptedPuppet";
     type Kind = Scripted;
 }
 
