@@ -1,9 +1,12 @@
+
+[dependencies]
+red4ext-rs = { git = "https://github.com/Roms1383/red4ext-rs", rev = "ea4dee6" }
 [package]
-name = "lootie"
-authors = ["Roms1383", "DerekM07"]
+name = "loot_icons_extension_fix"
+authors = ["Roms1383", "Demon9ne"]
 version = "1.0.0"
 edition = "2021"
-rust-version = "1.79.0"
+rust-version = "1.82.0"
 
 [lib]
 crate-type = ["cdylib"]
@@ -12,6 +15,3 @@ crate-type = ["cdylib"]
 lto = "thin"
 strip = true
 codegen-units = 1
-
-[dependencies]
-red4ext-rs = { git = "https://github.com/Roms1383/red4ext-rs", rev = "ea4dee6" }
