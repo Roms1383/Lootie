@@ -1,6 +1,3 @@
-
-[dependencies]
-red4ext-rs = { git = "https://github.com/Roms1383/red4ext-rs", rev = "ea4dee6" }
 [package]
 name = "loot_icons_extension_fix"
 authors = ["Roms1383", "Demon9ne"]
@@ -15,3 +12,6 @@ crate-type = ["cdylib"]
 lto = "thin"
 strip = true
 codegen-units = 1
+
+[dependencies]
+red4ext-rs = { git = "https://github.com/jac3km4/red4ext-rs", rev = "v0.9.1" }
