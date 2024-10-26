@@ -2,5 +2,5 @@
 /Cargo.lock
 /.vscode
 /community
-.env
+*.env
 checksum.txt
