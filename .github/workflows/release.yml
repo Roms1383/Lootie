@@ -35,7 +35,7 @@ jobs:
         with:
           tool: just
       - name: Bundle mod files
-        run: just ci 'LootIconsExtension-windows-latest-${{ github.ref_name }}' '${{ env.IS_RELEASE }}'
+        run: just ci 'LootIconsExtension-windows-latest-${{ github.ref_name }}'
       - name: Zip files
         uses: thedoctor0/zip-release@0.7.6
         with:
