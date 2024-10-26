@@ -5,7 +5,8 @@ set dotenv-load
 DEFAULT_GAME_DIR := join("C:\\", "Program Files (x86)", "Steam", "steamapps", "common", "Cyberpunk 2077")
 
 game_dir            := env_var_or_default("GAME_DIR", DEFAULT_GAME_DIR)
-plugin_name         := 'lootie'
+plugin_name         := 'loot_icons_extension_fix'
+script_name         := 'LootIconsExtensionFix'
 
 # codebase (here)
 red4ext_bin_dir     := join(justfile_directory(), "target")
@@ -13,7 +14,7 @@ redscript_repo_dir  := join(justfile_directory(), "reds")
 
 # game files
 red4ext_deploy_dir    := join("red4ext", "plugins", plugin_name)
-redscript_deploy_dir  := join("r6", "scripts", capitalize(plugin_name))
+redscript_deploy_dir  := join("r6", "scripts", script_name)
 red_cache_dir         := join("r6", "cache")
 
 [private]
